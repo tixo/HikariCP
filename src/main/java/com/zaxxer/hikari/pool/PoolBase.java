@@ -475,7 +475,7 @@ abstract class PoolBase
    {
       try {
          if (isUseJdbc4Validation) {
-            connection.isValid(1);
+            connection.isValid(Math.max(1, (int) MILLISECONDS.toSeconds(validationTimeout)));
          }
          else {
             executeSql(connection, config.getConnectionTestQuery(), false);
